@@ -26,7 +26,11 @@ router.get(
 		if (product) {
 			res.json(product);
 		} else {
-			res.status(404).json({ message: 'Product not found' });
+			// res.status(404).json({ message: 'Product not found' });
+			// if we dont provide this, by default status will be 505
+			res.status(404);
+			// this error will reach the error handler
+			throw new Error('Product not found');
 		}
 	})
 );
